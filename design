@@ -1,2 +1,315 @@
-https://sites.google.com/view/argadhuoromia/home
-file:///C:/Users/Beza/Downloads/Telegram%20Desktop/ormo.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ARGADHU OROMIA – Explore Zones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="oromo.css">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Background video */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .video-bg iframe {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    /* Dark overlay for readability */
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
+
+    /* Ensure main content is on top */
+    header, .hero, .container, .zones-container, footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      text-align: center;
+      color:white;
+      padding: 100px 20px 50px;
+    }
+
+    .hero-text h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .hero-text p {
+      font-size: 1.5em;
+    }
+
+    .btn-group {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .btn-group button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+
+    .zones-container {
+      display: none;
+      padding: 20px;
+    }
+
+    .zones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      width: 200px;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+    }
+
+    footer {
+      background-color: #111;
+      color: #fff;
+      padding: 40px 20px;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .footer-section {
+      margin-bottom: 20px;
+      flex: 1 1 200px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Video -->
+  <div class="video-bg">
+    <iframe 
+      src="https://www.youtube.com/embed/2CEHNALy-RE?autoplay=1&mute=1&loop=1&playlist=2CEHNALy-RE&controls=0&modestbranding=1&showinfo=0&rel=0"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- Overlay for readability -->
+  <div class="video-overlay"></div>
+
+  <!-- HEADER -->
+  <header style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background-color: black;">
+    <div style="display: flex; align-items: center;">
+      <img src="https://belayadugna.wordpress.com/wp-content/uploads/2014/09/7.jpg" alt="Oromia Cultural Image" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; margin-right: 10px;">
+      <h2 style="margin: 0; color: white;">ARGADHU OROMIA</h2>
+    </div>
+    <div>
+      <button>Login</button>
+      <button>Sign Up</button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1>ARGADHU OROMIA</h1>
+      <p>Explore the Hidden Beauty of Ethiopia</p>
+      <div class="video-container">
+        <button>Start Journey</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="container">
+    <section>
+      <h2 class="section-title">What is Oromia?</h2>
+      <p>Oromia is the largest region in Ethiopia, <br>filled with breathtaking landscapes, rich cultures, <br>and warm communities. </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Why Visit Oromia?</h2>
+      <ul>
+        <li><strong>Wonders:</strong> Bale Mountains, Lake Langano</li>
+        <li><strong>Cultural Festivals:</strong> Irreecha, Oromo New Year</li>
+        <li><strong>Food:</strong> Ittoo, Oromo Coffee Ceremony</li>
+        <li><strong>People:</strong> Friendly & Hospitable</li>
+        <li><strong>Adventures:</strong> Hiking, caves, wildlife tours</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- EXPLORE BUTTONS -->
+  <h2>Explore Oromia by Direction</h2>
+  <div class="btn-group">
+    <button onclick="showZones('north')">North</button>
+    <button onclick="showZones('south')">South</button>
+    <button onclick="showZones('east')">East</button>
+    <button onclick="showZones('west')">West</button>
+    <button onclick="showZones('central')">Central</button>
+  </div>
+
+  <!-- ZONE SECTIONS -->
+  <div id="north" class="zones-container">
+    <h3>North Oromia</h3>
+    <div class="zones">
+      <!-- Sample Zone Cards -->
+      <div class="card">
+        <img src="https://c8.alamy.com/comp/MWK7YX/mountain-landscape-north-shewa-between-blue-nile-bridge-and-gohatsion-also-called-blue-nile-gorge-it-is-very-steep-ride-from-the-bridge-MWK7YX.jpg" alt="North Shewa">
+        <p><a href="north-shewa.html">North Shewa</a></p>
+      </div>
+      <!-- Add more cards as needed -->
+    </div>
+  </div>
+
+  <div id="south" class="zones-container">
+    <h3>South Oromia</h3>
+    <div class="zones">
+      <div class="card">
+        <img src="https://c8.alamy.com/comp/MCJT78/guji-woman-in-traditional-dress-ethiopia-the-gujis-are-an-oromo-subgroup-MCJT78.jpg" alt="Guji">
+        <p>Guji</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="east" class="zones-container">
+    <h3>East Oromia</h3>
+    <div class="zones">
+      <div class="card">
+        <img src="harar.jpg" alt="Hararghe">
+        <p>Hararghe</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="west" class="zones-container">
+    <h3>West Oromia</h3>
+    <div class="zones">
+      <div class="card">
+        <img src="gimbi.jpg" alt="West Wollega">
+        <p>West Wollega</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="central" class="zones-container">
+    <h3>Central Oromia</h3>
+    <div class="zones">
+      <div class="card">
+        <img src="addis.jpg" alt="West Shewa Zone">
+        <p>West Shewa Zone</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>ARGADHU OROMIA</h3>
+        <p>Discover the hidden beauty of Oromia and connect with its culture, people, and nature.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Explore</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <a href="https://facebook.com" target="_blank">Facebook</a><br>
+        <a href="https://instagram.com" target="_blank">Instagram</a><br>
+        <a href="https://youtube.com" target="_blank">YouTube</a>
+      </div>
+
+      <div class="footer-section">
+        <h4>Language</h4>
+        <div id="google_translate_element"></div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 ARGADHU OROMIA. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script type="text/javascript">
+    function showZones(zoneId) {
+      const sections = document.querySelectorAll('.zones-container');
+      sections.forEach(section => section.style.display = 'none');
+
+      const selected = document.getElementById(zoneId);
+      if (selected) {
+        selected.style.display = 'block';
+        selected.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'am,en,fr,de,es,it,zh,ru,ar,pt,sw',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>
+
+
+
+
+
