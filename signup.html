@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up – Argadhu Oromia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffe;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 320px;
+    }
+    h2 {
+      text-align: center;
+    }
+    input, button, select {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Tourist Sign Up</h2>
+    <form method="post" action="/signup">
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="number" name="age" placeholder="Age" min="0" required>
+
+      <input list="countries" name="nationality" placeholder="Nationality" required>
+      <input list="countries" name="residence" placeholder="Country of Residence" required>
+
+      <input type="date" name="arrival_day" placeholder="Date of Arrival in Ethiopia" required>
+
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <datalist id="countries">
+      <option value="United States">
+      <option value="United Kingdom">
+      <option value="Germany">
+      <option value="France">
+      <option value="Italy">
+      <option value="Ethiopia">
+      <option value="Kenya">
+      <option value="South Africa">
+      <option value="India">
+      <option value="China">
+      <option value="Japan">
+      <option value="Canada">
+      <option value="Brazil">
+      <option value="Australia">
+      <option value="Turkey">
+      <!-- Add more countries as needed -->
+    </datalist>
+
+    <p style="text-align:center; margin-top:10px;">Already have an account? <a href="/login">Login</a></p>
+  </div>
+</body>
+</html>
