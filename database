@@ -1,0 +1,61 @@
+create database oromia;
+use oromia;
+create table tourist (
+tourist_id int AUTO_INCREMENT primary key  ,
+gender varchar(6),
+tourist_first_name varchar(100),
+tourist_last_name varchar(100),
+nationality varchar(50),
+username varchar(50) unique not null,
+tourist_email varchar (100) unique not null,
+tourist_password varchar(50),
+phone_number  VARCHAR(20)
+);
+create table tourguide ( 
+ tourguide_id int auto_increment primary key,
+ tourguide_fullname varchar (100),
+ tourguide_email varchar(100) unique ,
+ tourguide_phone varchar (20),
+ tourguide_zone varchar (50),
+ tg_language varchar(50),
+ experience_year int 
+ );
+ create table destination (
+ destination_id int auto_increment primary key,
+ destination_name varchar(100), 
+des_description text ,
+ location varchar(100) );
+ create table tourpackage(
+ package_id int primary key ,
+ title varchar(50),
+ price decimal(6,2),
+ duration_day int ,
+ destination_id int ,
+ tourguide_id int ,
+ foreign key (destination_id) references destination (destination_id),
+ foreign key (tourguide_id) references tourguide(tourguide_id)
+ );
+ create table booking(
+ booking_id int  ,
+ tourist_id int , 
+ package_id int,
+ bookingdate date,
+ tourdate date ,
+ booking_status text,
+ foreign key (tourist_id) references tourist (tourist_id),
+ foreign key (package_id) references tourpackage(package_id)
+ );
+ drop table tourpackage ;
+ CREATE TABLE Facility (
+  facility_id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  type VARCHAR(50),             
+  urgency_level VARCHAR(20),   
+  location VARCHAR(100),      
+  description TEXT,          
+  contact_phone VARCHAR(20),   
+  emergency_contact VARCHAR(20),
+  is_open_24_7 BOOLEAN DEFAULT FALSE,
+  destination_id INT,
+  FOREIGN KEY (destination_id) REFERENCES Destination(destination_id)
+);
