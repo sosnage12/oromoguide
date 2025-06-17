@@ -1,20 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>ARGADHU OROMIA – Explore Zones</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="oromo.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='oromo.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow-x: hidden;
-      font-family: Arial, sans-serif;
-    }
-
     /* Background video */
     .video-bg {
       position: fixed;
@@ -22,109 +14,88 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: -2;
       overflow: hidden;
-      pointer-events: none;
+      z-index: -1;
     }
 
     .video-bg iframe {
-      width: 100vw;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 177.77vh;
       height: 100vh;
-      object-fit: cover;
+      transform: translate(-50%, -50%);
       pointer-events: none;
     }
 
-    /* Dark overlay for readability */
     .video-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.4);
-      z-index: -1;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 0;
     }
 
-    /* Ensure main content is on top */
-    header, .hero, .container, .zones-container, footer {
+    .content {
       position: relative;
       z-index: 1;
-    }
-
-    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      color:white;
-      padding: 100px 20px 50px;
+      color: white;
+      padding: 0 20px;
     }
 
-    .hero-text h1 {
-      font-size: 3em;
+    header img {
+      max-width: 150px;
       margin-bottom: 10px;
     }
 
-    .hero-text p {
-      font-size: 1.5em;
-    }
-
-    .btn-group {
-      text-align: center;
-      margin: 20px;
-    }
-
-    .btn-group button {
-      margin: 5px;
+    button {
+      cursor: pointer;
       padding: 10px 20px;
-      font-size: 16px;
+      margin: 5px;
     }
 
+    /* Login & Sign Up buttons in top-right corner */
+    .top-buttons {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+    }
+
+    .top-buttons a button {
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 5px;
+      color: black;
+      font-weight: bold;
+    }
+
+    /* Remove bullet points */
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    /* Keep footer & zone containers visible */
     .zones-container {
-      display: none;
+      background-color: white;
+      color: black;
       padding: 20px;
-    }
-
-    .zones {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .card {
-      width: 200px;
-      background-color: #fff;
-      border-radius: 8px;
-      overflow: hidden;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-
-    .card img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
+      margin-top: 20px;
     }
 
     footer {
-      background-color: #111;
-      color: #fff;
-      padding: 40px 20px;
-    }
-
-    .footer-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
-    .footer-section {
-      margin-bottom: 20px;
-      flex: 1 1 200px;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 0.9em;
-      color: #ccc;
+      background-color: #222;
+      color: white;
+      padding: 20px;
     }
   </style>
 </head>
@@ -140,41 +111,39 @@
     </iframe>
   </div>
 
-  <!-- Overlay for readability -->
   <div class="video-overlay"></div>
 
-  <!-- HEADER -->
-  <header style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background-color: black;">
-    <div style="display: flex; align-items: center;">
-      <img src="https://belayadugna.wordpress.com/wp-content/uploads/2014/09/7.jpg" alt="Oromia Cultural Image" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; margin-right: 10px;">
-      <h2 style="margin: 0; color: white;">ARGADHU OROMIA</h2>
-    </div>
-    <div>
-      <button>Login</button>
-      <button>Sign Up</button>
-    </div>
-  </header>
+  <!-- Top-right login/signup buttons -->
+  <div class="top-buttons">
+    <a href="/login"><button>Login</button></a>
+    <a href="/signup"><button>Sign Up</button></a>
+  </div>
 
-  <!-- HERO SECTION -->
-  <div class="hero">
-    <div class="hero-text">
+  <!-- Centered Content -->
+  <div class="content">
+    <header>
+      <div>
+        <img src="https://belayadugna.wordpress.com/wp-content/uploads/2014/09/7.jpg" alt="Oromia Cultural Image" />
+        <h2>ARGADHU OROMIA</h2>
+      </div>
+    </header>
+
+    <div class="hero">
       <h1>ARGADHU OROMIA</h1>
       <p>Explore the Hidden Beauty of Ethiopia</p>
-      <div class="video-container">
-        <button>Start Journey</button>
-      </div>
+      <button>Start Journey</button>
     </div>
   </div>
 
   <!-- CONTENT -->
   <div class="container">
     <section>
-      <h2 class="section-title">What is Oromia?</h2>
-      <p>Oromia is the largest region in Ethiopia, <br>filled with breathtaking landscapes, rich cultures, <br>and warm communities. </p>
+      <h2>What is Oromia?</h2>
+      <p>Oromia is the largest region in Ethiopia, filled with breathtaking landscapes, rich cultures, and warm communities.</p>
     </section>
 
     <section>
-      <h2 class="section-title">Why Visit Oromia?</h2>
+      <h2>Why Visit Oromia?</h2>
       <ul>
         <li><strong>Wonders:</strong> Bale Mountains, Lake Langano</li>
         <li><strong>Cultural Festivals:</strong> Irreecha, Oromo New Year</li>
@@ -196,53 +165,51 @@
   </div>
 
   <!-- ZONE SECTIONS -->
-  <div id="north" class="zones-container">
+  <div id="north" class="zones-container" style="display:none;">
     <h3>North Oromia</h3>
     <div class="zones">
-      <!-- Sample Zone Cards -->
       <div class="card">
-        <img src="https://c8.alamy.com/comp/MWK7YX/mountain-landscape-north-shewa-between-blue-nile-bridge-and-gohatsion-also-called-blue-nile-gorge-it-is-very-steep-ride-from-the-bridge-MWK7YX.jpg" alt="North Shewa">
-        <p><a href="north-shewa.html">North Shewa</a></p>
+        <img src="{{ url_for('static', filename='images/north-shewa.jpg') }}" alt="North Shewa" />
+        <p><a href="/north-shewa">North Shewa</a></p>
       </div>
-      <!-- Add more cards as needed -->
     </div>
   </div>
 
-  <div id="south" class="zones-container">
+  <div id="south" class="zones-container" style="display:none;">
     <h3>South Oromia</h3>
     <div class="zones">
       <div class="card">
-        <img src="https://c8.alamy.com/comp/MCJT78/guji-woman-in-traditional-dress-ethiopia-the-gujis-are-an-oromo-subgroup-MCJT78.jpg" alt="Guji">
+        <img src="{{ url_for('static', filename='images/guji.jpg') }}" alt="Guji" />
         <p>Guji</p>
       </div>
     </div>
   </div>
 
-  <div id="east" class="zones-container">
+  <div id="east" class="zones-container" style="display:none;">
     <h3>East Oromia</h3>
     <div class="zones">
       <div class="card">
-        <img src="harar.jpg" alt="Hararghe">
+        <img src="{{ url_for('static', filename='images/harar.jpg') }}" alt="Hararghe" />
         <p>Hararghe</p>
       </div>
     </div>
   </div>
 
-  <div id="west" class="zones-container">
+  <div id="west" class="zones-container" style="display:none;">
     <h3>West Oromia</h3>
     <div class="zones">
       <div class="card">
-        <img src="gimbi.jpg" alt="West Wollega">
+        <img src="{{ url_for('static', filename='images/gimbi.jpg') }}" alt="West Wollega" />
         <p>West Wollega</p>
       </div>
     </div>
   </div>
 
-  <div id="central" class="zones-container">
+  <div id="central" class="zones-container" style="display:none;">
     <h3>Central Oromia</h3>
     <div class="zones">
       <div class="card">
-        <img src="addis.jpg" alt="West Shewa Zone">
+        <img src="{{ url_for('static', filename='images/addis.jpg') }}" alt="West Shewa Zone" />
         <p>West Shewa Zone</p>
       </div>
     </div>
@@ -267,8 +234,8 @@
 
       <div class="footer-section">
         <h4>Follow Us</h4>
-        <a href="https://facebook.com" target="_blank">Facebook</a><br>
-        <a href="https://instagram.com" target="_blank">Instagram</a><br>
+        <a href="https://facebook.com" target="_blank">Facebook</a><br />
+        <a href="https://instagram.com" target="_blank">Instagram</a><br />
         <a href="https://youtube.com" target="_blank">YouTube</a>
       </div>
 
@@ -283,12 +250,10 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
   <script type="text/javascript">
     function showZones(zoneId) {
       const sections = document.querySelectorAll('.zones-container');
-      sections.forEach(section => section.style.display = 'none');
-
+      sections.forEach(section => (section.style.display = 'none'));
       const selected = document.getElementById(zoneId);
       if (selected) {
         selected.style.display = 'block';
@@ -297,19 +262,16 @@
     }
 
     function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: 'am,en,fr,de,es,it,zh,ru,ar,pt,sw',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-      }, 'google_translate_element');
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: 'en',
+          includedLanguages: 'am,en,fr,de,es,it,zh,ru,ar,pt,sw',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        },
+        'google_translate_element'
+      );
     }
   </script>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
-
-
-
-
-
