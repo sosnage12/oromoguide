@@ -1,73 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Sign Up – Argadhu Oromia</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
-  <script>
-    function toggleForms() {
-      const userType = document.querySelector('input[name="user_type"]:checked').value;
-      document.getElementById('tourist-fields').style.display = userType === 'tourist' ? 'block' : 'none';
-      document.getElementById('tourguide-fields').style.display = userType === 'tourguide' ? 'block' : 'none';
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f2f2f2;
     }
-
-    window.onload = function() {
-      document.getElementById('user_type_tourist').checked = true;
-      toggleForms();
+    h2 {
+      color: #2c3e50;
     }
-  </script>
+    form {
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      max-width: 500px;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 15px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    input[type="submit"] {
+      background-color: #27ae60;
+      color: white;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #219150;
+    }
+  </style>
 </head>
 <body>
-  <div class="form-box">
-    <h2>Sign Up</h2>
-    <form method="post" action="/signup">
-      <label>
-        <input type="radio" name="user_type" id="user_type_tourist" value="tourist" onchange="toggleForms()" required>
-        Tourist
-      </label>
-      <label>
-        <input type="radio" name="user_type" id="user_type_tourguide" value="tourguide" onchange="toggleForms()">
-        Tour Guide
-      </label>
 
-      <div id="tourist-fields">
-        <input type="text" name="name" placeholder="Full Name" required />
-        <input type="number" name="age" placeholder="Age" min="0" required />
-        <input list="countries" name="nationality" placeholder="Nationality" required />
-        <input list="countries" name="residence" placeholder="Country of Residence" required />
-        <input type="date" name="arrival_day" required />
-        <input type="text" name="username" placeholder="Username" required />
-        <input type="password" name="password" placeholder="Password" required />
-      </div>
+  <h2>Tourist Registration</h2>
+  <form method="POST" action="/signup">
+    <input type="hidden" name="user_type" value="tourist">
 
-      <div id="tourguide-fields" style="display: none;">
-        <input type="text" name="fullname" placeholder="Full Name" />
-        <input type="email" name="email" placeholder="Email" />
-        <input type="text" name="phone" placeholder="Phone Number" />
-        <input type="text" name="zone" placeholder="Zone" />
-        <input type="text" name="language" placeholder="Languages (e.g. English, Afaan Oromo)" />
-        <input type="number" name="experience" placeholder="Years of Experience" min="0" />
-      </div>
+    <label>Name:</label>
+    <input type="text" name="name" required>
 
-      <button type="submit">Register</button>
-    </form>
+    <label>Age:</label>
+    <input type="number" name="age" required>
 
-    <datalist id="countries">
-      <option value="United Kingdom">
-      <option value="Germany">
-      <option value="France">
-      <option value="Italy">
-      <option value="Ethiopia">
-      <option value="Kenya">
-      <option value="South Africa">
-      <option value="India">
-      <option value="China">
-      <option value="Japan">
-      <option value="Canada">
-      <option value="Brazil">
-      <option value="Australia">
-      <option value="Turkey">
-    </datalist>
-  </div>
+    <label>Nationality:</label>
+    <input type="text" name="nationality" required>
+
+    <label>Residence:</label>
+    <input type="text" name="residence" required>
+
+    <label>Arrival Day:</label>
+    <input type="date" name="arrival_day" required>
+
+    <label>Username:</label>
+    <input type="text" name="username" required>
+
+    <label>Password:</label>
+    <input type="password" name="password" required>
+
+    <input type="submit" value="Register as Tourist">
+  </form>
+
+  <h2>Tour Guide Registration</h2>
+  <form method="POST" action="/signup">
+    <input type="hidden" name="user_type" value="tourguide">
+
+    <label>Full Name:</label>
+    <input type="text" name="fullname" required>
+
+    <label>Email:</label>
+    <input type="email" name="email" required>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" required>
+
+    <label>Zone:</label>
+    <input type="text" name="zone" required>
+
+    <label>Languages Spoken:</label>
+    <input type="text" name="language" required>
+
+    <label>Experience (Years):</label>
+    <input type="number" name="experience" required>
+
+    <input type="submit" value="Register as Tour Guide">
+  </form>
+
 </body>
 </html>
