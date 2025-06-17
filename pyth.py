@@ -3,14 +3,19 @@ import mysql.connector
 
 app = Flask(__name__)
 
-# Connect to your MySQL database
-#db = mysql.connector.connect(
- #   host="localhost",
-  #  user="root",                      # 🔁 Your MySQL username
-   # password="sosna#gemechu1",       # 🔁 Your MySQL password
-    #database="argadhu"               # 🔁 Your database name
-#)
-#cursor = db.cursor()
+'''try:
+    db = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="argadhu"
+    )
+    cursor = db.cursor()
+    print("✅ Connected to database.")
+except mysql.connector.Error as err:
+    print("❌ Failed to connect to database:", err)
+
+'''
 
 @app.route('/')
 def home():
@@ -88,4 +93,5 @@ def north_shewa():
     return "<h1>North Shewa Zone Info Coming Soon!</h1>"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5050)
+
