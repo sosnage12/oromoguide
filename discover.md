@@ -1,4 +1,5 @@
-flowchart TD
+```mermaid
+      flowchart TD
     A[Tourist Opens Website] --> B{Is User Logged In?}
     B -- No --> C[Sign Up / Login]
     B -- Yes --> D[Dashboard / Home Page]
